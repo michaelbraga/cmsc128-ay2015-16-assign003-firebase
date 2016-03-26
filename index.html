@@ -16,12 +16,48 @@
 		<!-- jQuery -->
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 
+		<script src='jquery/dist/jquery.min.js'></script>
+		<script src='bootstrap/dist/js/bootstrap.min.js'></script>
+		<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="flatly.css" media="screen" title="no title" charset="utf-8">
+
 	</head>
 	<body>
 
-		<input type='text' id='nameInput' placeholder='Name'>
-		<input type='text' id='messageInput' placeholder='Message'>
-		<div id='messagesDiv'></div>
+		<h2 class="text-center">
+			<span class="glyphicon glyphicon-list-alt" aria-hidden="true">
+			</span> NotePad αlphα
+		</h2>
+
+		<hr/>
+
+		<div class="container">
+			<form id="addNoteForm">
+				<div class="form-group">
+					<input class="form-control" type='text' id='titleInput' placeholder='Title' required="required"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type='text' id='noteInput' placeholder='Note' required="required"/>
+				</div>
+				<div class="form-group">
+					<select class="form-control" required="required"  id="completedInput">
+						<option value="0">Not yet completed</option>
+						<option value="1">Completed</option>
+
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="submit" name="name" value="Add Note" class="btn btn-primary btn-block"/>
+				</div>
+			</form>
+		</div>
+		<hr/>
+
+		<div >
+			<ul id='notesDiv'>
+
+			</ul>
+		</div>
 		<!-- myScript -->
 		<script type="text/javascript" src="script.js"></script>
 	</body>

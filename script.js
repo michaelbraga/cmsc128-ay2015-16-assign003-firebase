@@ -1,20 +1,36 @@
-var notes = new Firebase('https://wga74ks86k5.firebaseio-demo.com/');
+var notesdb = new Firebase('https://notepadalpha.firebaseio.com/notes');
 
 
-$('#messageInput').keypress(function (e) {
-	if (e.keyCode == 13) {
-		var name = $('#nameInput').val();
-		var text = $('#messageInput').val();
-		notes.push({name: name, text: text});
-		$('#messageInput').val('');
+$('#addNoteForm').submit(function (event) {
+	var title = $('#titleInput').val();
+	if (title === "" || !title) {
+		alert('No title!');
 	}
-});
-notes.on('child_added', function(snapshot) {
-	var message = snapshot.val();
-	displayChatMessage(message.name, message.text);
+	var note = $('#noteInput').val();
+	if (note === "" || !note) {
+		alert('No note!');
+	}
+	var completed = $('#completedInput').val();
+
+	notesdb.push({title: title, note: note, completed:completed});
+	$('#titleInput').val('');
+	$('#noteInput').val('');
+	event.preventDefault();
 });
 
-function displayChatMessage(name, text) {
-	$('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-	$('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+
+
+
+
+
+
+
+
+notesdb.on('child_added', function(snapshot) {
+	var note = snapshot.val();
+	displayNote(note.title, note.note, note.completed);
+});
+
+function displayNote(title, note, completed) {
+	$('#notesDiv').append('<li><strong>'+title+'</strong>: '+note+' ('+((completed==0)?"Not yet completed":"Completed")+')'+'</li>');
 };
