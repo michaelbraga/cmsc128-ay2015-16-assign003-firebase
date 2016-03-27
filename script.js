@@ -32,5 +32,13 @@ notesdb.on('child_added', function(snapshot) {
 });
 
 function displayNote(title, note, completed) {
-	$('#notesDiv').append('<li><strong>'+title+'</strong>: '+note+' ('+((completed==0)?"Not yet completed":"Completed")+')'+'</li>');
+	var idTag;
+	if (completed == "0" || completed == 0)
+		idTag = "#notCompletedList";
+	else if(completed == "1" || completed == 1)
+		idTag = "#completedList";
+	else
+		return;
+
+	$(idTag).append("<tr> <td>"+title+"</td> <td>"+note+"</td> </tr>");
 };
