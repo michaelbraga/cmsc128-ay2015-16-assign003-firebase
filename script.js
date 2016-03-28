@@ -12,22 +12,20 @@ function deleteNote(noteId) {
 // Edit a note
 function editNote(noteId) {
 
-	if (confirm('Are you sure?')) {
-		$('#titleEdit').val($('#title'+noteId).text());
-		$('#noteEdit').val($('#note'+noteId).text());
-		$("#editModal").modal('show');
+	$('#titleEdit').val($('#title'+noteId).text());
+	$('#noteEdit').val($('#note'+noteId).text());
+	$("#editModal").modal('show');
 
-		$('#editForm').submit(function (event) {
-			var toUpdate = notesdb.child(noteId);
-			toUpdate.update({title:$('#titleEdit').val(), note:$('#noteEdit').val()}, function (error) {
-				if (error) {
-					alert("Something went wrong!")
-				}
-			});
-			event.preventDefault();
-			$("#editModal").modal('hide');
+	$('#editForm').submit(function (event) {
+		var toUpdate = notesdb.child(noteId);
+		toUpdate.update({title:$('#titleEdit').val(), note:$('#noteEdit').val()}, function (error) {
+			if (error) {
+				alert("Something went wrong!")
+			}
 		});
-	}
+		event.preventDefault();
+		$("#editModal").modal('hide');
+	});
 }
 
 // toggle a note
@@ -99,7 +97,7 @@ $('document').ready(function () {
 			"<td id='title"+noteid+"'>"+snapshot.val().title+"</td>"+
 			"<td id='note"+noteid+"'>"+snapshot.val().note+"</td>"+
 			"<td id='completed"+noteid+"' value='"+snapshot.val().completed+"' style='text-align:center;'>"+
-			((snapshot.val().completed == 0)? "<button class='btn btn-info btn-xs' onclick='toggle(\""+noteid+"\")'>Mark as Complete</button>":"<button class='btn btn-info btn-xs'>Mark as Not Complete</button>") +
+			((snapshot.val().completed == 0)? "<button class='btn btn-info btn-xs' onclick='toggle(\""+noteid+"\")'>Mark as Complete</button>":"<button class='btn btn-info btn-xs' onclick='toggle(\""+noteid+"\")'>Mark as Not Complete</button>") +
 			" <button class='btn btn-default btn-xs' onclick='editNote(\""+noteid+"\")'><span title='Edit' class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>"+
 			" <button  class='btn btn-danger btn-xs' onclick='deleteNote(\""+noteid+"\")'><span title='Remove' class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td>"+
 			"</tr>");
