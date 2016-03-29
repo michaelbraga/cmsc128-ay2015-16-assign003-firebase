@@ -1,0 +1,57 @@
+/*
+Author: Michael Arvin Jay C. Braga
+Section: CMSC 128 AB-2L
+Program Definition: A notepad app where it collects information such as text or note title, the text or
+		 note and whether the task has been completed or not.
+*/
+body {
+	/* for text smoothing */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/* for background */
+	background-color: #F5F3F0;
+	/* for top space */
+	padding-top: 10px;
+}
+textarea {
+	/* to allow users to resize the text area in a vertical way only */
+	resize: vertical;
+}
+.hfn {
+	/* for readability */
+	letter-spacing: 1px;
+}
+.ActionColumn {
+	/* to arrange buttons */
+	width: 250px;
+}
+
+#ContainerForAddNote {
+	/* to limit the size */
+	max-width: 700px;
+}
+
+#buttons {
+	/* to limit the size */
+	max-width: 700px;
+}
+#completeButton {
+	/* to create a pill effect on button */
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+#incompleteButton {
+	/* to create a pill effect on button */
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+#completeButton, #incompleteButton {
+	/* for readability */
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#completePanel, #incompletePanel {
+	/* to limit the size */
+	max-width: 850px;
+}
